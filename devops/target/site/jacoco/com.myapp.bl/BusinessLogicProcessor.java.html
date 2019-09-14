@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BusinessLogicProcessor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Devops Tutoral Webapp</a> &gt; <a href="index.source.html" class="el_package">com.myapp.bl</a> &gt; <span class="el_source">BusinessLogicProcessor.java</span></div><h1>BusinessLogicProcessor.java</h1><pre class="source lang-java linenums">package com.myapp.bl;
+
+import java.util.Arrays;
+
+<span class="fc" id="L5">public class BusinessLogicProcessor {</span>
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+<span class="nc" id="L10">	}</span>
+
+	public boolean isEven(int num) {
+		// TODO Auto-generated method stub
+<span class="fc bfc" id="L14" title="All 2 branches covered.">		if (num % 2 == 0) {</span>
+<span class="fc" id="L15">			return true;</span>
+		} else {
+<span class="fc" id="L17">			return false;</span>
+		}
+	}
+
+	
+	public int[] generatePrimeNums(int numOfDigits) {
+		
+<span class="fc" id="L24">		int primeArr[] = new int[numOfDigits];</span>
+<span class="fc" id="L25">		int arrIncrementor = 2;</span>
+
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">		if (numOfDigits == 1) {</span>
+<span class="nc" id="L28">			primeArr[0] = 1;</span>
+<span class="nc" id="L29">			return primeArr;</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">		} else if (numOfDigits == 2) {</span>
+<span class="nc" id="L31">			primeArr[0] = 1;</span>
+<span class="nc" id="L32">			primeArr[1] = 2;</span>
+<span class="nc" id="L33">			return primeArr;</span>
+		} else {
+<span class="fc" id="L35">			primeArr[0] = 1;</span>
+<span class="fc" id="L36">			primeArr[1] = 2;</span>
+		}
+
+		boolean isPrime;
+<span class="fc bfc" id="L40" title="All 2 branches covered.">		for (int counter = 3; arrIncrementor &lt; numOfDigits; counter++) {</span>
+<span class="fc" id="L41">			isPrime = false;</span>
+<span class="fc" id="L42">			isPrime = isNumberPrime(counter);</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">			if (isPrime) {</span>
+<span class="fc" id="L44">				primeArr[arrIncrementor] = counter;</span>
+<span class="fc" id="L45">				arrIncrementor++;</span>
+			}
+		}
+<span class="fc" id="L48">		return primeArr;</span>
+	}
+	
+	public String generatePrimeNums(String str) {
+<span class="fc" id="L52">		String primeNumStr = null;</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">		if (stringIsAValidPositiveNumber(str)) {</span>
+			
+<span class="nc" id="L55">			int numOfPrimeDigits = Integer.parseInt(str);</span>
+<span class="nc" id="L56">			primeNumStr = Arrays.toString(generatePrimeNums(numOfPrimeDigits));</span>
+<span class="nc" id="L57">		} else {</span>
+<span class="fc" id="L58">			primeNumStr = &quot;Enter a valid number&quot;;</span>
+		}
+<span class="fc" id="L60">		return primeNumStr;</span>
+	}
+	
+	
+	private boolean stringIsAValidPositiveNumber(String str) {
+<span class="fc" id="L65">		boolean isValid = false;</span>
+		try {
+<span class="fc" id="L67">			int num = Integer.parseInt(str);</span>
+<span class="pc bpc" id="L68" title="1 of 4 branches missed.">			if (num &gt; 0 &amp;&amp; (num % 1 == 0)) {</span>
+<span class="fc" id="L69">				isValid = true;</span>
+<span class="fc" id="L70">				return isValid;</span>
+			}
+<span class="fc" id="L72">		} catch (NumberFormatException ex) {</span>
+<span class="fc" id="L73">			isValid = false;</span>
+<span class="fc" id="L74">			return isValid;</span>
+<span class="fc" id="L75">		}</span>
+<span class="fc" id="L76">		return isValid;</span>
+		
+	}
+	private boolean isNumberPrime(int i) {
+<span class="fc" id="L80">		boolean isPrime = true;</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">		for (int counter = 2; counter &lt; i; counter++) {</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">			if (i % counter == 0) {</span>
+<span class="fc" id="L83">				isPrime = false; // this is the CORRECT logic uncomment this to pass the test case</span>
+				//isPrime = true; // this is the WRONG logic uncomment this to fail the test case
+<span class="fc" id="L85">				return isPrime;</span>
+			}
+		}
+<span class="fc" id="L88">		return isPrime;</span>
+	}
+
+	public int[] generateFibSeries(int len) {
+		// This is my second commit for BLP class only.
+<span class="fc" id="L93">		int arr[] = new int[len];</span>
+<span class="fc" id="L94">		arr[0] = 0;</span>
+<span class="fc" id="L95">		arr[1] = 1;</span>
+
+<span class="fc bfc" id="L97" title="All 2 branches covered.">		for (int i = 2; i &lt; arr.length; i++) {</span>
+<span class="fc" id="L98">			arr[i] = arr[i - 1] + arr[i - 2]; // this line is the correct logic</span>
+			//arr[i] = arr[i - 1] + arr[i - 1]; // this line is the wrong logic if this is included unit test will fail
+		}
+<span class="fc" id="L101">		return arr;</span>
+	}
+
+	public String generateFibSeries(String str) {
+		
+<span class="fc" id="L106">		String strOfFibSeries = null;</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">		if(stringIsAValidPositiveNumber(str)) {</span>
+<span class="fc" id="L108">			int inumOfFibSeries = Integer.parseInt(str);</span>
+<span class="fc" id="L109">			strOfFibSeries = Arrays.toString(generateFibSeries(inumOfFibSeries));</span>
+<span class="fc" id="L110">		} else {</span>
+<span class="fc" id="L111">			strOfFibSeries = &quot;Enter a valid number&quot;; // this is good logic</span>
+			//strOfFibSeries = &quot;Enter&quot;; // - this is bad logic
+		}
+<span class="fc" id="L114">		return strOfFibSeries;</span>
+	}
+	
+	/**
+	 * @param arr
+	 *            - This takes in an Integer Arr
+	 * @return - Returns the array which is sorted in Ascending order
+	 */
+	public int[] sortArrayInAscnOrder(int[] arr) {
+		// System.out.println(&quot;unsorted array before sorting : &quot; + Arrays.toString(arr));
+
+		
+		 ///////////////////////////////// ----- Selection sort algorithm starts
+		  
+		 // Outer loop - need n-1 iteration to sort n elements 
+		 
+<span class="fc bfc" id="L130" title="All 2 branches covered.">		 for(int i=0; i&lt;arr.length-1; i++){           /// this line is the correct logic </span>
+		 // for(int i=1; i&lt;arr.length-1; i++) {        /// uncomment this line to introduce a logical bug
+		 
+		 		//Inner loop to perform comparision and swapping between adjacent numbers 
+		 		//After each iteration one index from last is sorted 
+<span class="fc bfc" id="L135" title="All 2 branches covered.">		 	for(int j= 1; j&lt;arr.length-i; j++){</span>
+		 	//If current number is greater than swap those two 
+<span class="fc bfc" id="L137" title="All 2 branches covered.">		 		if(arr[j-1] &gt; arr[j]){ </span>
+<span class="fc" id="L138">		 			int temp = arr[j]; </span>
+<span class="fc" id="L139">		 			arr[j] = arr[j-1]; </span>
+<span class="fc" id="L140">		 			arr[j-1] = temp; </span>
+		 		} 
+		 	}
+		  
+		 } 
+		 ///////////////////////////////////// ----- Selection sort algorithm ends
+		 
+		/*
+		////////////////////////////////////////////// Bubble sort logic starts
+		int n = arr.length;
+		int k;
+		for (int m = n; m &gt;= 0; m--) {
+			for (int i = 0; i &lt; n - 1; i++) {
+				k = i + 1;
+				if (arr[i] &gt; arr[k]) {
+					swapNumbers(i, k, arr);
+				}
+			}
+		}*/
+		//////////////////////////////////////////////// Bubble sort logic ends
+		
+		// System.out.println(&quot;Sorted array &gt;&gt;&quot;+ Arrays.toString(arr));
+<span class="fc" id="L162">		return arr;</span>
+	}
+
+	private void swapNumbers(int i, int j, int[] arr) {
+
+		int temp;
+<span class="nc" id="L168">		temp = arr[i];</span>
+<span class="nc" id="L169">		arr[i] = arr[j];</span>
+<span class="nc" id="L170">		arr[j] = temp;</span>
+<span class="nc" id="L171">	}</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
